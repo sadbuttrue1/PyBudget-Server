@@ -11,6 +11,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True)
     password_hash = db.Column(db.String(128))
+    accounts = db.relationship('Account', backref='users',
+                               lazy='dynamic', cascade="all, delete-orphan")
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
@@ -33,3 +35,12 @@ class User(db.Model):
             return None  # invalid token
         user = User.query.get(data['id'])
         return user
+
+
+class Account(db.Model):
+    __tablename__ = 'accounts'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), index=True)
+    info = db.Column(db.String(256))
+    creation_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
