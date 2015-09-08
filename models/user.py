@@ -14,7 +14,7 @@ class User(db.Model):
     accounts = db.relationship('Account', backref='users',
                                lazy='dynamic', cascade="all, delete-orphan")
     payeetypes = db.relationship('PayeeType', backref='users',
-                                            lazy='dynamic', cascade="all, delete-orphan")
+                                 lazy='dynamic', cascade="all, delete-orphan")
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
