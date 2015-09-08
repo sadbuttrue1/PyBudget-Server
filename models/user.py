@@ -2,6 +2,8 @@ from budget import db, app
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
+from models.payeetype import PayeeType
+from models.account import Account
 
 __author__ = 'true'
 

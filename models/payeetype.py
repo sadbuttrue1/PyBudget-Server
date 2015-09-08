@@ -1,4 +1,5 @@
 from budget import db
+from models.payee import Payee
 
 __author__ = 'true'
 
