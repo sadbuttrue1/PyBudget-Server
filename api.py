@@ -3,7 +3,9 @@ from flask import request, jsonify, url_for, g
 from flask.ext.restful import abort
 from sqlalchemy.exc import SQLAlchemyError
 from budget import app, db, auth
-from models import User, Account
+from models.account import Account
+from models.user import User
+from models.payeetype import PayeeType
 
 __author__ = 'true'
 
@@ -14,7 +16,6 @@ def new_user():
     password = request.json.get('password')
     if username is None or password is None:
         abort(400)  # missing arguments
-    if User.query.filter_by(username=username).first() is not None:
         abort(400)  # existing user
     user = User(username=username)
     user.hash_password(password)
