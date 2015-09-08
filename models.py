@@ -2,6 +2,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 from budget import db, app
 from passlib.apps import custom_app_context as pwd_context
+import json
 
 __author__ = 'true'
 
@@ -44,3 +45,12 @@ class Account(db.Model):
     info = db.Column(db.String(256))
     creation_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'info': self.info,
+            'creation_date': self.creation_date,
+            'user_id': self.user_id
+        }

@@ -96,5 +96,4 @@ def get_account(id):
     account = Account.query.get(id)
     if not account:
         abort(400)
-    return jsonify(id=account.id, name=account.name, info=account.info, creation_date=account.creation_date,
-                   user_id=account.user_id)
+    return jsonify(account.serialize())
