@@ -81,7 +81,7 @@ def update_account(id):
     name = request.json.get('name')
     info = request.json.get('info')
     account = Account.query.get(id)
-    if not account:
+    if not account or account.id != g.user.id:
         abort(404)
     if name is not None:
         account.name = name
@@ -96,7 +96,7 @@ def update_account(id):
 @auth.login_required
 def delete_account(id):
     account = Account.query.get(id)
-    if not account:
+    if not account or account.id != g.user.id:
         abort(404)
     db.session.delete(account)
     db.session.commit()
@@ -107,7 +107,7 @@ def delete_account(id):
 @auth.login_required
 def get_account(id):
     account = Account.query.get(id)
-    if not account:
+    if not account or account.id != g.user.id:
         abort(404)
     return jsonify(account.serialize())
 
