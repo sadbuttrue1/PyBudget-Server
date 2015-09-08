@@ -20,6 +20,6 @@ context.load_cert_chain(basedir + '/server.crt', basedir + '/server.key')
 from api import *
 
 if __name__ == '__main__':
-    if not os.path.exists('db.sqlite'):
+    if not os.path.exists(os.path.abspath(os.path.dirname(__file__)) + '/db.sqlite'):
         db.create_all()
     app.run(ssl_context=context)
