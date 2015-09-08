@@ -6,6 +6,8 @@ from budget import app, db, auth
 from models.account import Account
 from models.user import User
 from models.payeetype import PayeeType
+from models.payee import Payee
+from models.payment import Payment
 
 __author__ = 'true'
 

@@ -10,6 +10,8 @@ class Account(db.Model):
     info = db.Column(db.String(256))
     creation_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    payments = db.relationship('Payment', backref='accounts',
+                               lazy='dynamic', cascade="all, delete-orphan")
 
     def serialize(self):
         return {
@@ -17,5 +19,6 @@ class Account(db.Model):
             'name': self.name,
             'info': self.info,
             'creation_date': self.creation_date,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'payments': [a.serialize() for a in self.payments.all()]
         }
