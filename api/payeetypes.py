@@ -1,5 +1,5 @@
 import datetime
-from flask import request, jsonify, url_for
+from flask import request, jsonify, url_for, g
 from flask.ext.restful import abort
 from budget import app, db
 from budget import auth
