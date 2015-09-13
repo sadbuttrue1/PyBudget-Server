@@ -19,9 +19,9 @@ class Payment(db.Model):
             'id': self.id,
             'name': self.name,
             'info': self.info,
-            'creation_date': self.creation_date,
+            'creation_date': self.creation_date.timestamp(),
             'account_id': self.account_id,
             'payee_id': self.payee_id,
             'cleared': self.cleared,
-            'cleared_date': self.cleared_date
+            'cleared_date': self.cleared_date.timestamp()
         }

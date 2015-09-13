@@ -19,7 +19,7 @@ class PayeeType(db.Model):
             'id': self.id,
             'name': self.name,
             'info': self.info,
-            'creation_date': self.creation_date,
+            'creation_date': self.creation_date.timestamp(),
             'user_id': self.user_id,
             'payees': [a.serialize() for a in self.payees.all()]
         }
