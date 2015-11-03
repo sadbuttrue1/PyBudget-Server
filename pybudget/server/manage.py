@@ -1,6 +1,7 @@
 from flask.ext.migrate import MigrateCommand, Migrate
 from flask.ext.script import Manager
-from budget import app, db
+
+from pybudget.server.budget import app, db
 
 __author__ = 'true'
 

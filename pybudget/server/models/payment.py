@@ -1,4 +1,4 @@
-from budget import db
+from pybudget.server.budget import db
 
 __author__ = 'true'
 

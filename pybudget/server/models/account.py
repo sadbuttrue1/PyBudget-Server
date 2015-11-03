@@ -1,18 +1,18 @@
-from budget import db
-from models.payee import Payee
+from pybudget.server.budget import db
+from pybudget.server.models.payment import Payment
 
 __author__ = 'true'
 
 
-class PayeeType(db.Model):
-    __tablename__ = 'payeetypes'
+class Account(db.Model):
+    __tablename__ = 'accounts'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index=True)
     info = db.Column(db.String(256))
     creation_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    payees = db.relationship('Payee', backref='payeetypes',
-                             lazy='dynamic', cascade="all, delete-orphan")
+    payments = db.relationship('Payment', backref='accounts',
+                               lazy='dynamic', cascade="all, delete-orphan")
 
     def serialize(self):
         return {
@@ -21,5 +21,5 @@ class PayeeType(db.Model):
             'info': self.info,
             'creation_date': self.creation_date.timestamp(),
             'user_id': self.user_id,
-            'payees': [a.serialize() for a in self.payees.all()]
+            'payments': [a.serialize() for a in self.payments.all()]
         }

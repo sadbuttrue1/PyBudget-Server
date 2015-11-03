@@ -1,5 +1,5 @@
-from budget import db
-from models.payment import Payment
+from pybudget.server.budget import db
+from pybudget.server.models.payment import Payment
 
 __author__ = 'true'
 

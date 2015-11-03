@@ -1,8 +1,9 @@
 from flask import request, jsonify, g, url_for
 from flask.ext.restful import abort
 from sqlalchemy.exc import SQLAlchemyError
-from budget import app, db, auth
-from models.user import User
+
+from pybudget.server.budget import app, db, auth
+from pybudget.server.models.user import User
 
 __author__ = 'true'
 
